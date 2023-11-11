@@ -8,6 +8,7 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven { url 'https://jitpack.io' }
         google()
         mavenCentral()
     }
@@ -15,3 +16,11 @@ dependencyResolutionManagement {
 
 rootProject.name = "FindingLinkModules"
 include ':app'
+include(':finding')
+project(':finding').projectDir = new File('./Finding/library')
+include(':map')
+project(':map').projectDir = new File('./Map/library')
+include(':cardInfo')
+project(':cardInfo').projectDir = new File('./CardInfo/library')
+include(':filter')
+project(':filter').projectDir = new File('./Filter/library')

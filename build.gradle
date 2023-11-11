@@ -1,5 +1,30 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-id 'com.android.application' version '8.1.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
+    id 'com.android.application' version '8.1.0' apply false
+    id 'com.android.library' version '8.1.0' apply false
+    id 'org.jetbrains.kotlin.android' version '1.8.20' apply false
+    id 'com.google.dagger.hilt.android' version '2.44' apply false
+}
+
+ext {
+    // Sdk and tools
+    compileSdk = 33
+    minSdk = 24
+    targetSdk = 33
+    buildToolsVersion = '30.0.3'
+
+    //hilt
+    hiltVersion = '2.46'
+
+    //navigation
+    nav_version = "2.5.3"
+
+    room_version = "2.5.1"
+
+    themeVersion = '6f8e2a7a08'
+    cardInfoVersion = '93ce877975'
+    mapVersion = '4882b3bbb0'
+    filterVersion = '2c947b9606'
+    dataVersion = '317ca44396'
+    torangRepositoryVersion = 'eacd8d631c'
 }
