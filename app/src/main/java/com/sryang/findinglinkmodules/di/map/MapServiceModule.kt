@@ -61,6 +61,10 @@ class MapServiceModule {
             }
 
             override fun saveBound(visibleRegion: VisibleRegion) {
+                mapRepository.setNElat(visibleRegion.latLngBounds.northeast.latitude)
+                mapRepository.setNElon(visibleRegion.latLngBounds.northeast.longitude)
+                mapRepository.setSWlat(visibleRegion.latLngBounds.southwest.latitude)
+                mapRepository.setSWlon(visibleRegion.latLngBounds.southwest.longitude)
             }
         }
     }

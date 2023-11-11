@@ -22,9 +22,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.sryang.screen_filter.ui.FilterScreen
 import com.sryang.screen_filter.ui.FilterViewModel
-import com.sryang.screenfindingtest.di.finding.toFilter
-import com.sryang.screenfindingtest.di.finding.toMarkData
-import com.sryang.screenfindingtest.di.finding.toRestaurantCardData
 import kotlinx.coroutines.launch
 
 @Composable
@@ -88,12 +85,17 @@ fun Finding(
             }
         },
         filter = {
-            FilterScreen(filterViewModel = filterViewModel, onFilter = {
-                val filter = it.toFilter()
-                filter.lat = myLocation?.latitude
-                filter.lon = myLocation?.longitude
-                findingViewModel.filter(filter)
-            }, visible = isVisible)
+            FilterScreen(filterViewModel = filterViewModel,
+                onFilter = {
+                    val filter = it.toFilter()
+                    filter.lat = myLocation?.latitude
+                    filter.lon = myLocation?.longitude
+                    findingViewModel.filter(filter)
+                },
+                visible = isVisible,
+                onThisArea = {
+                    findingViewModel.findThisArea(it.toFilter())
+                })
         },
         myLocation = {
             CurrentLocationScreen(onLocation = {
@@ -114,19 +116,4 @@ fun Finding(
             )
         }
     )
-}
-
-fun String.toBoundary(): Double {
-    if (this.equals("100m")) {
-        return 100.0
-    } else if (this.equals("300m")) {
-        return 300.0
-    } else if (this.equals("500m")) {
-        return 500.0
-    } else if (this.equals("1km")) {
-        return 1000.0
-    } else if (this.equals("3km")) {
-        return 3000.0
-    }
-    return 0.0
 }
