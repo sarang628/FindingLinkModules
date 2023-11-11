@@ -9,6 +9,7 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         maven { url 'https://jitpack.io' }
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
         google()
         mavenCentral()
     }
@@ -24,3 +25,5 @@ include(':cardInfo')
 project(':cardInfo').projectDir = new File('./CardInfo/library')
 include(':filter')
 project(':filter').projectDir = new File('./Filter/library')
+include(':repository')
+project(':repository').projectDir = new File('./TorangRepository/library')

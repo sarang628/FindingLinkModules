@@ -8,21 +8,19 @@ plugins {
 
 android {
     namespace 'com.sryang.findinglinkmodules'
-    compileSdk 34
+    compileSdk rootProject.compileSdk
 
     defaultConfig {
         applicationId "com.sryang.findinglinkmodules"
-        minSdk 24
-        targetSdk 34
+        minSdk rootProject.minSdk
+        targetSdk rootProject.targetSdk
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures {
-        compose true
-    }
+    buildFeatures { compose true }
 
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.6"
@@ -55,19 +53,14 @@ dependencies {
     /** Room */
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-    // To use Kotlin annotation processing tool (kapt)
-    kapt "androidx.room:room-compiler:$room_version"
-    // optional - RxJava2 support for Room
-    implementation "androidx.room:room-rxjava2:$room_version"
-    // optional - RxJava3 support for Room
-    implementation "androidx.room:room-rxjava3:$room_version"
-    // optional - Guava support for Room, including Optional and ListenableFuture
-    implementation "androidx.room:room-guava:$room_version"
-    // optional - Test helpers
-    testImplementation "androidx.room:room-testing:$room_version"
-    // optional - Paging 3 Integration
-    implementation "androidx.room:room-paging:$room_version"
+    kapt "androidx.room:room-compiler:$room_version" // To use Kotlin annotation processing tool (kapt)
+    implementation "androidx.room:room-rxjava2:$room_version" // optional - RxJava2 support for Room
+    implementation "androidx.room:room-rxjava3:$room_version" // optional - RxJava3 support for Room
+    implementation "androidx.room:room-guava:$room_version" // optional - Guava support for Room, including Optional and ListenableFuture
+    testImplementation "androidx.room:room-testing:$room_version" // optional - Test helpers
+    implementation "androidx.room:room-paging:$room_version" // optional - Paging 3 Integration
     implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.work:work-runtime-ktx:$workVersion"
 
     /** google map */
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
@@ -92,5 +85,6 @@ dependencies {
     implementation project(path: ':map')
     implementation project(path: ':filter')
     implementation project(path: ':cardInfo')
-    implementation "com.github.sarang628:TorangRepository:$torangRepositoryVersion"
+    implementation project(path: ':repository')
+//    implementation 'com.github.sarang628:TorangRepository:eacd8d631c'
 }

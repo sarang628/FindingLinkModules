@@ -10,3 +10,6 @@
 [submodule "Filter"]
 	path = Filter
 	url = https://github.com/sarang628/Filter.git
+[submodule "TorangRepository"]
+	path = TorangRepository
+	url = https://github.com/sarang628/TorangRepository.git
