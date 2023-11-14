@@ -12,7 +12,6 @@ import androidx.compose.runtime.setValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.cardinfo.RestaurantCardPage
-import com.example.cardinfo.RestaurantCardViewModel
 import com.example.screen_finding.ui.FindScreen
 import com.example.screen_finding.viewmodel.FindingViewModel
 import com.example.screen_map.compose.CurrentLocationScreen
@@ -20,6 +19,7 @@ import com.example.screen_map.compose.MapScreen
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.sryang.screen_filter.data.lanLng
 import com.sryang.screen_filter.ui.FilterScreen
 import com.sryang.screen_filter.ui.FilterViewModel
 import kotlinx.coroutines.launch
@@ -27,7 +27,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun Finding(
     findingViewModel: FindingViewModel = hiltViewModel(),
-    restaurantCardViewModel: RestaurantCardViewModel = hiltViewModel(),
     filterViewModel: FilterViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
@@ -38,20 +37,14 @@ fun Finding(
     var isVisible by remember { mutableStateOf(true) }
     var myLocation: LatLng? by remember { mutableStateOf(null) }
 
-    Log.d("_FindingScreenModule", filterUiState.distance)
-
-
     FindScreen(
         restaurantCardPage = {
             RestaurantCardPage(
-                restaurants = uiState.restaurants.stream().map { it.toRestaurantCardData() }
-                    .toList(),
-                restaurantImageUrl = "http://sarang628.iptime.org:89/restaurant_images/",
-                onChangePage = { page ->
-                    findingViewModel.selectPage(page)
-                },
+                restaurants = uiState.restaurants.stream().map { it.toRestaurantCardData() }.toList(),
+                restaurantImageServerUrl = "http://sarang628.iptime.org:89/restaurant_images/",
+                onChangePage = { page -> findingViewModel.selectPage(page) },
                 onClickCard = { navController.navigate("restaurant/$it") },
-                selectedRestaurant = uiState.selectedRestaurant?.toRestaurantCardData(),
+                focusedRestaurant = uiState.selectedRestaurant?.toRestaurantCardData(),
                 visible = isVisible
             )
         },
@@ -95,6 +88,14 @@ fun Finding(
                 visible = isVisible,
                 onThisArea = {
                     findingViewModel.findThisArea(it.toFilter())
+                },
+                onNation = {
+                    coroutineScope.launch {
+                        cameraPositionState.animate(
+                            CameraUpdateFactory.newLatLng(LatLng(it.lanLng().lat, it.lanLng().lng)),
+                            1000
+                        )
+                    }
                 })
         },
         myLocation = {

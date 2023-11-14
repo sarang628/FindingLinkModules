@@ -2,7 +2,7 @@ package com.sryang.screenfindingtest.di.finding
 
 import android.location.Location
 import com.example.screen_finding.data.RestaurantInfo
-import com.example.screen_finding.usecase.FindingService
+import com.example.screen_finding.usecase.FindRestaurantUseCase
 import com.example.screen_finding.usecase.SearchThisAreaUseCase
 import com.example.screen_finding.viewmodel.Filter
 import com.sryang.findinglinkmodules.di.finding.toFilter
@@ -20,8 +20,8 @@ import dagger.hilt.components.SingletonComponent
 @Module
 class FindingServiceModule {
     @Provides
-    fun provideFindingService(apiRestaurant: ApiRestaurant): FindingService {
-        return object : FindingService {
+    fun provideFindingService(apiRestaurant: ApiRestaurant): FindRestaurantUseCase {
+        return object : FindRestaurantUseCase {
             override suspend fun findRestaurants(): List<RestaurantInfo> {
                 return apiRestaurant.getAllRestaurant(HashMap()).stream().map {
                     it.toRestaurantInfo()
