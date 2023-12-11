@@ -38,6 +38,8 @@ fun Finding(
     var myLocation: LatLng? by remember { mutableStateOf(null) }
 
     FindScreen(
+        errorMessage = uiState.errorMessage,
+        consumeErrorMessage = {findingViewModel.clearErrorMessage()},
         restaurantCardPage = {
             RestaurantCardPage(
                 restaurants = uiState.restaurants.stream().map { it.toRestaurantCardData() }.toList(),

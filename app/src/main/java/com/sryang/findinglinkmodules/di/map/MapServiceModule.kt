@@ -24,7 +24,7 @@ class MapServiceModule {
         return object : MapService {
             override suspend fun restaurantMarkerList(): List<MarkerData> {
 
-                val list = restaurantApi.getAllRestaurant(HashMap())
+                val list = restaurantApi.getAllRestaurant()
 
                 return list.stream().map {
                     MarkerData(

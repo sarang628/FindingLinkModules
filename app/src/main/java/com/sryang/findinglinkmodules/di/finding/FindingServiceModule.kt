@@ -8,12 +8,14 @@ import com.example.screen_finding.viewmodel.Filter
 import com.sryang.findinglinkmodules.di.finding.toFilter
 import com.sryang.findinglinkmodules.di.finding.toRestaurantInfo
 import com.sryang.torang_repository.api.ApiRestaurant
+import com.sryang.torang_repository.api.handle
 import com.sryang.torang_repository.data.SearchType
 import com.sryang.torang_repository.repository.MapRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.HttpException
 
 
 @InstallIn(SingletonComponent::class)
@@ -23,18 +25,13 @@ class FindingServiceModule {
     fun provideFindingService(apiRestaurant: ApiRestaurant): FindRestaurantUseCase {
         return object : FindRestaurantUseCase {
             override suspend fun findRestaurants(): List<RestaurantInfo> {
-                return apiRestaurant.getAllRestaurant(HashMap()).stream().map {
-                    it.toRestaurantInfo()
-                }.toList()
+                return apiRestaurant.getAllRestaurant().map { it.toRestaurantInfo() }
             }
 
             override suspend fun filter(filter: Filter): List<RestaurantInfo> {
                 return apiRestaurant.getFilterRestaurant(
                     filter = filter.toFilter()
-                )
-                    .stream().map {
-                        it.toRestaurantInfo()
-                    }.toList()
+                ).map { it.toRestaurantInfo() }
             }
         }
     }
@@ -53,13 +50,14 @@ class FindingServiceModule {
                 filter.south = mapRepository.getSWlon()
                 filter.west = mapRepository.getSWlat()
                 filter.searchType = SearchType.BOUND
+                try {
+                    return apiRestaurant.getFilterRestaurant(
+                        filter = filter
+                    ).map { it.toRestaurantInfo() }
+                }catch (e: HttpException){
+                    throw Exception(e.handle())
+                }
 
-                return apiRestaurant.getFilterRestaurant(
-                    filter = filter
-                )
-                    .stream().map {
-                        it.toRestaurantInfo()
-                    }.toList()
             }
         }
     }

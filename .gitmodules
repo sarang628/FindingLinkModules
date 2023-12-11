@@ -13,3 +13,6 @@
 [submodule "TorangRepository"]
 	path = TorangRepository
 	url = https://github.com/sarang628/TorangRepository.git
+[submodule "app/src/main/java/com/sryang/findinglinkmodules/di/repository"]
+	path = app/src/main/java/com/sryang/findinglinkmodules/di/repository
+	url = https://github.com/sarang628/repository.git
