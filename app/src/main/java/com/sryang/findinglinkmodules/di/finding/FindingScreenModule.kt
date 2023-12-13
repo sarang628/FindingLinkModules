@@ -20,6 +20,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.sryang.screen_filter.data.lanLng
+import com.sryang.screen_filter.data.zoom
 import com.sryang.screen_filter.ui.FilterScreen
 import com.sryang.screen_filter.ui.FilterViewModel
 import kotlinx.coroutines.launch
@@ -39,10 +40,10 @@ fun Finding(
 
     FindScreen(
         errorMessage = uiState.errorMessage,
-        consumeErrorMessage = {findingViewModel.clearErrorMessage()},
+        consumeErrorMessage = { findingViewModel.clearErrorMessage() },
         restaurantCardPage = {
             RestaurantCardPage(
-                restaurants = uiState.restaurants.stream().map { it.toRestaurantCardData() }.toList(),
+                restaurants = uiState.restaurants.map { it.toRestaurantCardData() },
                 restaurantImageServerUrl = "http://sarang628.iptime.org:89/restaurant_images/",
                 onChangePage = { page -> findingViewModel.selectPage(page) },
                 onClickCard = { navController.navigate("restaurant/$it") },
@@ -58,7 +59,7 @@ fun Finding(
                         findingViewModel.selectMarker(it)
                     },
                     cameraPositionState = cameraPositionState,
-                    list = uiState.restaurants.stream().map { it.toMarkData() }.toList(),
+                    list = uiState.restaurants.map { it.toMarkData() },
                     selectedMarkerData = uiState.selectedRestaurant?.toMarkData(),
                     onMapClick = {
                         isVisible = !isVisible
@@ -94,7 +95,12 @@ fun Finding(
                 onNation = {
                     coroutineScope.launch {
                         cameraPositionState.animate(
-                            CameraUpdateFactory.newLatLng(LatLng(it.lanLng().lat, it.lanLng().lng)),
+                            CameraUpdateFactory.newLatLngZoom(
+                                LatLng(
+                                    it.lanLng().lat,
+                                    it.lanLng().lng
+                                ), it.zoom()
+                            ),
                             1000
                         )
                     }
