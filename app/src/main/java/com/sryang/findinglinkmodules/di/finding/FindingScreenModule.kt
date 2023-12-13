@@ -19,8 +19,6 @@ import com.example.screen_map.compose.MapScreen
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.rememberCameraPositionState
-import com.sryang.screen_filter.data.lanLng
-import com.sryang.screen_filter.data.zoom
 import com.sryang.screen_filter.ui.FilterScreen
 import com.sryang.screen_filter.ui.FilterViewModel
 import kotlinx.coroutines.launch
@@ -97,9 +95,9 @@ fun Finding(
                         cameraPositionState.animate(
                             CameraUpdateFactory.newLatLngZoom(
                                 LatLng(
-                                    it.lanLng().lat,
-                                    it.lanLng().lng
-                                ), it.zoom()
+                                    it.latitude,
+                                    it.longitude
+                                ), it.zoom
                             ),
                             1000
                         )
