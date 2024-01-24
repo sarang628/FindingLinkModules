@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.sryang.findinglinkmodules.di.finding.Finding
+import com.sryang.findinglinkmodules.di.finding_di.Finding
 import com.sryang.findinglinkmodules.ui.theme.FindingLinkModulesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
