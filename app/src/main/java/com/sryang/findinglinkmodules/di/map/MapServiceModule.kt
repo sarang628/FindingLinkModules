@@ -6,8 +6,8 @@ import com.example.screen_map.usecase.SavePositionUseCase
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.VisibleRegion
-import com.sryang.torang_repository.api.ApiRestaurant
-import com.sryang.torang_repository.repository.MapRepository
+import com.sarang.torang.api.ApiRestaurant
+import com.sarang.torang.repository.MapRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
