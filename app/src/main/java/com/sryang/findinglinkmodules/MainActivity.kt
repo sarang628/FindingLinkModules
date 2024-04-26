@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
                         composable("finding") {
                             Box {
                                 Finding(
-                                    navController = rememberNavController()
+                                    navController = navController
                                 )
                                 Button(onClick = { navController.navigate("test") }) {
 
@@ -44,6 +45,10 @@ class MainActivity : ComponentActivity() {
                             Button(onClick = { navController.popBackStack() }) {
 
                             }
+                        }
+
+                        composable("restaurant/{restaurantId}") {
+                            Text(text = "")
                         }
                     }
 
