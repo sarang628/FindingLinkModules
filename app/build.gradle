@@ -87,4 +87,5 @@ dependencies {
     implementation project(path: ':cardInfo')
     implementation project(path: ':repository')
 //    implementation 'com.github.sarang628:TorangRepository:eacd8d631c'
+    implementation "com.github.sarang628:CommonImageLoader:$commonImageLoaderVersion"
 }

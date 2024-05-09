@@ -28,5 +28,6 @@ ext {
     filterVersion = '2c947b9606'
     dataVersion = '317ca44396'
     torangRepositoryVersion = '912b39ecd6'
-    commonImageLoaderVersion = '9ec5b04dfa'
+    commonImageLoaderVersion = '8230ade5ca'
+
 }
