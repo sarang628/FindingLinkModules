@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id 'com.android.application' version '8.2.0' apply false
-    id 'com.android.library' version '8.2.0' apply false
+    id 'com.android.application' version '8.3.2' apply false
+    id 'com.android.library' version '8.3.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.20' apply false
     id 'com.google.dagger.hilt.android' version '2.44' apply false
 }
@@ -25,7 +25,7 @@ ext {
     themeVersion = '6f8e2a7a08'
     cardInfoVersion = '93ce877975'
     mapVersion = '4882b3bbb0'
-    filterVersion = '2c947b9606'
+    filterVersion = '30483a5119'
     dataVersion = '317ca44396'
     torangRepositoryVersion = '912b39ecd6'
     commonImageLoaderVersion = '8230ade5ca'

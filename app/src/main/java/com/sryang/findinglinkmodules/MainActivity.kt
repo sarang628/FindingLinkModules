@@ -13,6 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.screen_map.compose.MapScreen
+import com.example.screen_map.compose.MapScreenForRestaurant
+import com.example.screen_map.data.MarkerData
+import com.google.maps.android.compose.rememberCameraPositionState
 import com.sryang.findinglinkmodules.di.finding_di.Finding
 import com.sryang.findinglinkmodules.ui.theme.FindingLinkModulesTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "finding") {
+                    NavHost(navController = navController, startDestination = "map") {
                         composable("finding") {
                             Box {
                                 Finding(
@@ -49,6 +53,19 @@ class MainActivity : ComponentActivity() {
 
                         composable("restaurant/{restaurantId}") {
                             Text(text = "")
+                        }
+
+                        composable("map") {
+                            val marker = MarkerData(
+                                id = 0,
+                                lon = 102.0,
+                                lat = 32.0,
+                                title = "restaurant",
+                                foodType = ""
+                            )
+                            MapScreenForRestaurant(
+                                selectedMarkerData = marker
+                            )
                         }
                     }
 
