@@ -19,6 +19,7 @@ import com.example.screen_map.data.MarkerData
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.sryang.findinglinkmodules.di.finding_di.Finding
 import com.sryang.findinglinkmodules.ui.theme.FindingLinkModulesTheme
+import com.sryang.screen_filter.ui.FilterScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,22 +34,16 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "map") {
+                    NavHost(navController = navController, startDestination = "finding") {
                         composable("finding") {
                             Box {
                                 Finding(
                                     navController = navController
                                 )
-                                Button(onClick = { navController.navigate("test") }) {
-
-                                }
                             }
                         }
 
                         composable("test") {
-                            Button(onClick = { navController.popBackStack() }) {
-
-                            }
                         }
 
                         composable("restaurant/{restaurantId}") {

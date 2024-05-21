@@ -27,7 +27,7 @@ ext {
     mapVersion = '4882b3bbb0'
     filterVersion = '30483a5119'
     dataVersion = '317ca44396'
-    torangRepositoryVersion = '912b39ecd6'
+    torangRepositoryVersion = '4dfb5c65c6'
     commonImageLoaderVersion = '8230ade5ca'
 
 }
