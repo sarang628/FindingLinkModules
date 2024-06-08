@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "finding") {
+                    NavHost(navController = navController, startDestination = "map") {
                         composable("finding") {
                             Box {
                                 Finding(
@@ -49,13 +49,14 @@ class MainActivity : ComponentActivity() {
                         composable("map") {
                             val marker = MarkerData(
                                 id = 0,
-                                lon = 102.0,
-                                lat = 32.0,
+                                lon = 123.90530463625674,
+                                lat = 10.317742495546137,
                                 title = "restaurant",
                                 foodType = ""
                             )
                             MapScreenForRestaurant(
-                                selectedMarkerData = marker
+                                selectedMarkerData = marker,
+                                zoom = 17f
                             )
                         }
                     }
