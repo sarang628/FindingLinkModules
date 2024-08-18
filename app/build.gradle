@@ -20,6 +20,30 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    android.buildFeatures.buildConfig true
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "SERVER_URL", '"http://sarang628.iptime.org"'
+            buildConfigField "String", "IMAGE_PORT", '"89"'
+            buildConfigField "String", "PROFILE_IMAGE_SERVER_URL", '"http://sarang628.iptime.org:89/profile_images/"'
+            buildConfigField "String", "REVIEW_IMAGE_SERVER_URL", '"http://sarang628.iptime.org:89/review_images/"'
+            buildConfigField "String", "RESTAURANT_IMAGE_SERVER_URL", '"http://sarang628.iptime.org:89/restaurant_images/"'
+            buildConfigField "String", "MENU_IMAGE_SERVER_URL", '"http://sarang628.iptime.org:89/menu_images/"'
+        }
+
+        release {
+            buildConfigField "String", "SERVER_URL", '"http://sarang628.iptime.org"'
+            buildConfigField "String", "IMAGE_PORT", '"89"'
+            buildConfigField "String", "PROFILE_IMAGE_SERVER_URL", '"http://sarang628.iptime.org:89/profile_images/"'
+            buildConfigField "String", "REVIEW_IMAGE_SERVER_URL", '"http://sarang628.iptime.org:89/review_images/"'
+            buildConfigField "String", "RESTAURANT_IMAGE_SERVER_URL", '"http://sarang628.iptime.org:89/restaurant_images/"'
+            buildConfigField "String", "MENU_IMAGE_SERVER_URL", '"http://sarang628.iptime.org:89/menu_images/"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
     buildFeatures { compose true }
 
     composeOptions {
