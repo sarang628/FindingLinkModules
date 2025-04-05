@@ -13,9 +13,12 @@
 [submodule "TorangRepository"]
 	path = TorangRepository
 	url = https://github.com/sarang628/TorangRepository.git
-[submodule "app/src/main/java/com/sryang/findinglinkmodules/di/repository"]
-	path = app/src/main/java/com/sryang/findinglinkmodules/di/repository
+[submodule "app/src/main/java/com/sarang/torang/di/repository"]
+	path = app/src/main/java/com/sarang/torang/di/repository
 	url = https://github.com/sarang628/repository.git
-[submodule "app/src/main/java/com/sryang/findinglinkmodules/di/finding_di"]
-	path = app/src/main/java/com/sryang/findinglinkmodules/di/finding_di
+[submodule "app/src/main/java/com/sarang/torang/di/finding_di"]
+	path = app/src/main/java/com/sarang/torang/di/finding_di
 	url = https://github.com/sarang628/finding_di.git
+[submodule "gradle/TorangToml"]
+	path = gradle/TorangToml
+	url = https://github.com/sarang628/TorangToml.git

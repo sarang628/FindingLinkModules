@@ -14,8 +14,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.screen_map.compose.MapScreenForRestaurant
 import com.example.screen_map.data.MarkerData
-import com.sarang.torang.di.finding_di.Finding
 import com.sarang.torang.theme.FindingLinkModulesTheme
+import com.sryang.findinglinkmodules.di.finding_di.Finding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
