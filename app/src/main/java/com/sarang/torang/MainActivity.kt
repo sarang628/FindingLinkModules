@@ -24,20 +24,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FindingLinkModulesTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     val navController = rememberNavController()
                     val rootNavController = RootNavController()
                     NavHost(navController = navController, startDestination = "finding") {
                         composable("finding") {
-                            Box {
-                                Finding(
-                                    navController = rootNavController
-                                )
-                            }
+                            Box { Finding(navController = rootNavController) }
                         }
 
                         composable("test") {
@@ -48,17 +40,8 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable("map") {
-                            val marker = MarkerData(
-                                id = 0,
-                                lon = 123.90530463625674,
-                                lat = 10.317742495546137,
-                                title = "restaurant",
-                                foodType = ""
-                            )
-                            MapScreenForRestaurant(
-                                selectedMarkerData = marker,
-                                zoom = 17f
-                            )
+                            val marker = MarkerData(id = 0, lon = 123.90530463625674, lat = 10.317742495546137, title = "restaurant", foodType = "")
+                            MapScreenForRestaurant(selectedMarkerData = marker, zoom = 17f)
                         }
                     }
 
